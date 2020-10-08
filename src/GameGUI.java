@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;  
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -24,7 +25,7 @@ public class GameGUI extends Application {
     	primaryStage.setScene(s);
     	
     	primaryStage.setTitle("Conway's Game of Life");
- 
+    	primaryStage.getIcons().add(new Image("/resources/glider_icon.png"));
         
         //Label zoom_label = new Label("Zoom:");  
         Button start = new Button("Start");
@@ -37,11 +38,11 @@ public class GameGUI extends Application {
         Label speedValue = new Label(Double.toString(speed.getValue()));
 
         // Hard coded values for board
-    	int rowNum = 100;
-    	int colNum = 100;
+    	int rowNum = 20;
+    	int colNum = 20;
     	
-    	int cellSize = 5;
-        int spacing = 1;
+    	int cellSize = 20;
+        int spacing = 3;
 
         HBox mainLayout = new HBox();
         
@@ -51,7 +52,7 @@ public class GameGUI extends Application {
         // Create board with provided parameters and add it to the GUI
         Board board = new Board(state, rowNum, colNum, cellSize, spacing);
         BorderPane boardHolder = new BorderPane(board);
-        boardHolder.setStyle("-fx-background-color: gray");
+        boardHolder.setStyle("-fx-background-color: #b3b3b3");
 
         // Add controls to GUI
         GridPane controlsLayout = new GridPane();
@@ -88,6 +89,7 @@ public class GameGUI extends Application {
 				
 				if (event.getSource() == reset) {
 					state.resetGrid();
+					board.nextFrame();
 					event.consume();
 				}
 			}
@@ -108,12 +110,29 @@ public class GameGUI extends Application {
         	
         });
         
+        board.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				// Will still activate cell if you click on spacing
+				int colClicked = (int) (event.getX() / (cellSize + spacing));
+				int rowClicked = (int) (event.getY() / (cellSize + spacing));
+				
+				board.gb.setCell(colClicked, rowClicked);
+				board.drawCell(colClicked, rowClicked);
+				
+				event.consume();
+			}
+        	
+        });
+        
         // Add board and controls to HBox
         mainLayout.getChildren().addAll(boardHolder, controlsLayout);
 
         // Add HBox to root group of nodes
     	root.getChildren().add(mainLayout);
     	
+    	// Interesting pre-written start states 
     	int startState[][] = {{1, 1}, {1, 3}, {2, 2}, {2, 3}, {3, 2}}; // glider
     	//int startState[][] = {{2, 4}, {2, 5}, {2, 6}, {2, 10}, {2, 11}, {2, 12}, {4, 2}, {4, 7}, {4, 9}, {4, 14}, {5, 2}, {5, 7}, {5, 9}, {5, 14}, {6, 2}, {6, 7}, {6, 9}, {6, 14},
     	//	{7, 4}, {7, 5}, {7, 6}, {7, 10}, {7, 11}, {7, 12}, {9, 4}, {9, 5}, {9, 6}, {9, 10}, {9, 11}, {9, 12}, {10, 2}, {10, 7}, {10, 9}, {10, 14}, {11, 2}, 

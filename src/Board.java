@@ -80,4 +80,15 @@ public class Board extends Canvas{
         
         gb.buildNextCycle();
 	}
+	
+	public void drawCell(int col, int row) {
+		if (col < 0 || col >= colNum)
+			return;
+		
+		if (row < 0 || row >= rowNum)
+			return;
+		
+		gc.setFill(Color.BLACK);
+		gc.fillRect(col * (cellSize + spacing), row * (cellSize + spacing), cellSize, cellSize);
+	}
 }

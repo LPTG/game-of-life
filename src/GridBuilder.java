@@ -19,6 +19,19 @@ public abstract class GridBuilder {
 		grid = new boolean[dimensions][dimensions];
 	}
 	
+	public void setCell(int col, int row) {
+		if (grid == null)
+			return;
+		
+		if (col < 0 || col >= cols)
+			return;
+		
+		if (row < 0 || row >= rows)
+			return;
+		
+		grid[row][col] = true;
+	}
+	
 	// Set the state of grid
 	public void setCells(int cells[][]) {
 		if (grid == null)
