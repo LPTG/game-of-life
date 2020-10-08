@@ -1,4 +1,5 @@
-
+// Implementation of GridBuilder that allows cells to travel across any border
+// If a cell crosses a border it will appear on the opposite border
 public class ToroidalBuilder extends GridBuilder {
 	public ToroidalBuilder(int cols, int rows) {
 		super(cols, rows);

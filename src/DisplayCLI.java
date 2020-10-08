@@ -1,9 +1,8 @@
-
-public class DisplayCLI implements GridDisplay {
+// Only used to print grid to command line
+public class DisplayCLI {
 	char on = '#';
-	char off = ' ';
+	char off = '-';
 	
-	@Override
 	public void printGrid(boolean[][] grid) {
 		for (int i = 0; i < grid.length; i++) {
 			
