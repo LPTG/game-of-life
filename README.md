@@ -39,17 +39,24 @@ or
 `java GameCLI 25 40`
 
 # Examples
-
 A large oscillator
 
+[![Oscillator](https://i.gyazo.com/5b4576a491d35abb3bcc642aecc8e505.gif)](https://gyazo.com/5b4576a491d35abb3bcc642aecc8e505)
+
+
 [![Oscillator](https://i.gyazo.com/7928e4af0bfcf1354720d04daec4bb1b.gif)](https://gyazo.com/7928e4af0bfcf1354720d04daec4bb1b)
+
 
 A glider
 
 Notice how it travels across the borders of the grid
 
+[![Glider](https://i.gyazo.com/f007d4f89bb29c98376cee7a28f189c0.gif)](https://gyazo.com/f007d4f89bb29c98376cee7a28f189c0)
+
+
 [![Glider](https://i.gyazo.com/508b24c9dbbe4182ced9f13426dd521c.gif)](https://gyazo.com/508b24c9dbbe4182ced9f13426dd521c)
 
 Start states are currently hardcoded into the GameCLI class.
+
 
 
