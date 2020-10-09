@@ -15,7 +15,7 @@ public class Board extends Canvas{
 	AnimationTimer boardAnimation;
 	
 	public Board(GridBuilder gb, int rowNum, int colNum, int cellSize, int spacing) {
-		super(rowNum * (cellSize + spacing), colNum * (cellSize + spacing));
+		super(rowNum * (cellSize + spacing) + spacing, colNum * (cellSize + spacing) + spacing);
 		this.rowNum = rowNum;
 		this.colNum = colNum;
 		this.cellSize = cellSize;
@@ -57,8 +57,8 @@ public class Board extends Canvas{
 	}
 
 	public void nextFrame() {
-		int xPos = 0;
-        int yPos = 0;
+		int xPos = spacing;
+        int yPos = spacing;
 
         for (int row = 0; row < rowNum; row++) {
             for (int col = 0; col < colNum; col++) {
@@ -74,7 +74,7 @@ public class Board extends Canvas{
                 xPos += cellSize + spacing;
             }
             
-            xPos = 0;
+            xPos = spacing;
             yPos += cellSize + spacing;
         }
         
@@ -89,6 +89,6 @@ public class Board extends Canvas{
 			return;
 		
 		gc.setFill(Color.BLACK);
-		gc.fillRect(col * (cellSize + spacing), row * (cellSize + spacing), cellSize, cellSize);
+		gc.fillRect(col * (cellSize + spacing) + spacing, row * (cellSize + spacing) + spacing, cellSize, cellSize);
 	}
 }
